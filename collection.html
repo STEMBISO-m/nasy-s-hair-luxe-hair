@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Collection | Nasy Luxe Hair</title>
@@ -16,11 +15,34 @@
       padding:40px;
     }
     .product {
+      position:relative;
       background:white;
       padding:20px;
       border-radius:10px;
       box-shadow:0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
     }
+    .product img {
+      width:100%;
+      border-radius:10px;
+      transition: transform 0.3s ease;
+      cursor:pointer;
+    }
+    .product img:hover { transform: scale(1.08); }
+    .badge {
+      position:absolute;
+      top:15px;
+      left:15px;
+      background:#d4af37;
+      color:white;
+      padding:5px 10px;
+      border-radius:5px;
+      font-size:12px;
+      font-weight:bold;
+      text-transform:uppercase;
+    }
+    h3 { margin:10px 0 5px 0; }
+    p { margin:5px 0; color:#555; }
     button {
       width:100%;
       padding:10px;
@@ -31,10 +53,16 @@
       margin-top:10px;
       border-radius:6px;
       font-weight:bold;
+      transition: background 0.3s;
     }
     button:hover { background:#333; }
-
-    /* Floating nav */
+    select {
+      width:100%;
+      padding:8px;
+      margin-top:10px;
+      border-radius:6px;
+      border:1px solid #ccc;
+    }
     .floating-nav {
       position: fixed;
       bottom: 20px;
@@ -64,24 +92,196 @@
 <body>
 
 <div class="products">
+
+  <!-- 16'' sdd -->
   <div class="product">
-    <h3>Vietnamese Hair</h3>
-    <p>Inches: 20"</p>
-    <p>Price: $120</p>
-    <button onclick="addToCart('Vietnamese Hair 20',120)">＋ Add to Cart</button>
+    <div class="badge">Premium</div>
+    <img src="images/16'' sdd.jpg" alt="16'' sdd">
+    <h3>16'' SDD</h3>
+    <p>Price: R2200</p>
+    <button onclick="addToCart('16 SDD',2200)">＋ Add to Cart</button>
   </div>
+
+  <!-- 10'' curls -->
   <div class="product">
-    <h3>Curly Hair</h3>
-    <p>Inches: 18"</p>
-    <p>Price: $100</p>
-    <button onclick="addToCart('Curly Hair 18',100)">＋ Add to Cart</button>
+    <div class="badge">New</div>
+    <img src="images/10'' curls.jpg" alt="10'' curls">
+    <h3>10'' Curls</h3>
+    <p>Price: R850</p>
+    <button onclick="addToCart('10 Curls',850)">＋ Add to Cart</button>
   </div>
+
+  <!-- 10'' DD -->
   <div class="product">
-    <h3>DD Jerry Curls</h3>
-    <p>Inches: 18"</p>
-    <p>Price: $95</p>
-    <button onclick="addToCart('DD Jerry Curls 18',95)">＋ Add to Cart</button>
+    <div class="badge">Premium</div>
+    <img src="images/10'' DD.jpg" alt="10'' DD">
+    <h3>10'' DD</h3>
+    <p>Price: R1100</p>
+    <button onclick="addToCart('10 DD',1100)">＋ Add to Cart</button>
   </div>
+
+  <!-- 10'' DD 2 -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/10'' DD 2.jpg" alt="10'' DD 2">
+    <h3>10'' DD 2</h3>
+    <p>Price: R1100</p>
+    <button onclick="addToCart('10 DD 2',1100)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 14'' DD -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/14'' DD.jpg" alt="14'' DD">
+    <h3>14'' DD</h3>
+    <p>Price: R1600</p>
+    <button onclick="addToCart('14 DD',1600)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 8'' GREY -->
+  <div class="product">
+    <div class="badge">New</div>
+    <img src="images/8'' GREY.jpg" alt="8'' GREY">
+    <h3>8'' Grey</h3>
+    <p>Price: R1100</p>
+    <button onclick="addToCart('8 Grey',1100)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 10'' VIETNAMESE -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/10'' VIETNAMESE.jpg" alt="10'' VIETNAMESE">
+    <h3>10'' Vietnamese</h3>
+    <p>Price: R2100</p>
+    <button onclick="addToCart('10 Vietnamese',2100)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 14'' VIETNAM -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/14'' VIETNAM.jpg" alt="14'' VIETNAM">
+    <h3>14'' Vietnam</h3>
+    <p>Price: R2600</p>
+    <button onclick="addToCart('14 Vietnam',2600)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 8'' SINGLE DRAWM -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/8'' SINGLE DRAWM.jpg" alt="8'' SINGLE DRAWM">
+    <h3>8'' Single Drawn</h3>
+    <p>Price: R650</p>
+    <button onclick="addToCart('8 Single Drawn',650)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 10'' VIETNAM -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/10'' VIETNAM.jpg" alt="10'' VIETNAM">
+    <h3>10'' Vietnam</h3>
+    <p>Price: R2100</p>
+    <button onclick="addToCart('10 Vietnam',2100)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 10'' VIETNAM 2 -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/10'' VIETNAM 2.jpg" alt="10'' VIETNAM 2">
+    <h3>10'' Vietnam 2</h3>
+    <p>Price: R2100</p>
+    <button onclick="addToCart('10 Vietnam 2',2100)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 18'' VIETNAM -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/18'' VIETNAM.jpg" alt="18'' VIETNAM">
+    <h3>18'' Vietnam</h3>
+    <p>Price: R2800</p>
+    <button onclick="addToCart('18 Vietnam',2800)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 10'' PRO DD GREY -->
+  <div class="product">
+    <div class="badge">New</div>
+    <img src="images/10'' PRO DD GREY.jpg" alt="10'' PRO DD GREY">
+    <h3>10'' Pro DD Grey</h3>
+    <p>Price: R1100</p>
+    <button onclick="addToCart('10 Pro DD Grey',1100)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 14'' DD 2 -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/14'' DD 2.jpg" alt="14'' DD 2">
+    <h3>14'' DD 2</h3>
+    <p>Price: R1400</p>
+    <button onclick="addToCart('14 DD 2',1400)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 10'' JERRY CURLS -->
+  <div class="product">
+    <div class="badge">New</div>
+    <img src="images/10'' JERRY CURLS.jpg" alt="10'' JERRY CURLS">
+    <h3>10'' Jerry Curls</h3>
+    <p>Price: R950</p>
+    <button onclick="addToCart('10 Jerry Curls',950)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 18'' VIETNAM 2 -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/18'' VIETNAM 2.jpg" alt="18'' VIETNAM 2">
+    <h3>18'' Vietnam 2</h3>
+    <p>Price: R2800</p>
+    <button onclick="addToCart('18 Vietnam 2',2800)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 10'' VIETNAM 3 -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/10'' VIETNAM 3.jpg" alt="10'' VIETNAM 3">
+    <h3>10'' Vietnam 3</h3>
+    <p>Price: R2100</p>
+    <button onclick="addToCart('10 Vietnam 3',2100)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 6'' VIETNAM -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/6'' VIETNAM.jpg" alt="6'' VIETNAM">
+    <h3>6'' Vietnam</h3>
+    <p>Price: R1700</p>
+    <button onclick="addToCart('6 Vietnam',1700)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 10'' VIETNAM 4 -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/10'' VIETNAM 4.jpg" alt="10'' VIETNAM 4">
+    <h3>10'' Vietnam 4</h3>
+    <p>Price: R1800</p>
+    <button onclick="addToCart('10 Vietnam 4',1800)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 8'' VIETNAM -->
+  <div class="product">
+    <div class="badge">New</div>
+    <img src="images/8'' VIETNAM.jpg" alt="8'' VIETNAM">
+    <h3>8'' Vietnam</h3>
+    <p>Price: R1100</p>
+    <button onclick="addToCart('8 Vietnam',1100)">＋ Add to Cart</button>
+  </div>
+
+  <!-- 22'' DD W. CURLS -->
+  <div class="product">
+    <div class="badge">Premium</div>
+    <img src="images/22'' DD W. CURLS.jpg" alt="22'' DD W. CURLS">
+    <h3>22'' DD W. Curls</h3>
+    <p>Price: R2200</p>
+    <button onclick="addToCart('22 DD W. Curls',2200)">＋ Add to Cart</button>
+  </div>
+
 </div>
 
 <!-- Floating Navigation -->
@@ -94,3 +294,4 @@
 
 </body>
 </html>
+
