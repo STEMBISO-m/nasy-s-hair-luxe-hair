@@ -1,33 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cart | Nasy Luxe Hair</title>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body{margin:0;font-family:Segoe UI;background:#f6f6f6}
-.cart-container{
-  max-width:900px;margin:40px auto;background:#fff;
-  border-radius:20px;padding:30px;
-  box-shadow:0 20px 40px rgba(0,0,0,.08)
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f6f6f6;
+  margin: 0;
+  color: #222;
 }
-.cart-item{
-  display:flex;align-items:center;
-  justify-content:space-between;
-  margin-bottom:20px;border-bottom:1px solid #eee;padding-bottom:15px
+
+/* ===== CART CONTAINER ===== */
+.cart-container {
+  max-width: 1000px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
-.cart-item img{width:90px;border-radius:12px}
-.qty button{
-  background:#d4af37;color:#fff;
-  border:none;width:30px;height:30px;border-radius:50%
+
+.cart-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
 }
-.checkout{
-  background:#25d366;color:#fff;
-  padding:15px;border:none;border-radius:30px;
-  font-size:16px;width:100%;margin-top:20px
+
+/* ===== CART ITEM ===== */
+.cart-item {
+  display: grid;
+  grid-template-columns: 120px 1fr 140px 140px 60px;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item img {
+  width: 110px;
+  height: 110px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.cart-name {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.cart-price {
+  font-weight: bold;
+  color: #555;
+}
+
+/* ===== QUANTITY CONTROLS ===== */
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-controls button {
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: #d4af37;
+  color: white;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.qty-controls button:hover {
+  background: #b9962f;
+}
+
+.qty-number {
+  font-weight: bold;
+}
+
+/* ===== REMOVE ===== */
+.remove-btn {
+  background: none;
+  border: none;
+  color: #c0392b;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.remove-btn:hover {
+  transform: scale(1.2);
+}
+
+/* ===== TOTAL ===== */
+.cart-footer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-total {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.checkout-btn {
+  padding: 14px 30px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #333;
+}
+
+/* ===== EMPTY CART ===== */
+.empty-cart {
+  text-align: center;
+  padding: 80px 0;
+  font-size: 18px;
+  color: #777;
+}
+
+/* ===== FLOATING NAV ===== */
+.floating-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0,0,0,0.9);
+  padding: 16px 22px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 999;
+}
+
+.floating-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+}
+
+.floating-nav a:hover {
+  color: #d4af37;
+  transform: translateX(6px);
 }
 </style>
 </head>
@@ -35,52 +169,79 @@ body{margin:0;font-family:Segoe UI;background:#f6f6f6}
 <body>
 
 <div class="cart-container">
-<h2>Your Cart</h2>
-<div id="cartItems"></div>
-<h3>Total: R<span id="total">0</span></h3>
-<button class="checkout" onclick="checkoutWhatsApp()">Checkout via WhatsApp</button>
+  <div class="cart-title">Your Shopping Cart</div>
+  <div id="cart-items"></div>
+
+  <div class="cart-footer">
+    <div class="cart-total">Total: R<span id="total">0</span></div>
+    <button class="checkout-btn">Checkout via WhatsApp</button>
+  </div>
+</div>
+
+<!-- Floating Navigation -->
+<div class="floating-nav">
+  <a href="index.html"><i class="fa fa-house"></i> Home</a>
+  <a href="collection.html"><i class="fa fa-box"></i> Collection</a>
+  <a href="reviews.html"><i class="fa fa-star"></i> Reviews</a>
 </div>
 
 <script>
-let cart=JSON.parse(localStorage.getItem('cart'))||[];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-function render(){
-let c=document.getElementById("cartItems");
-let t=0;
-c.innerHTML="";
-cart.forEach((i,idx)=>{
-t+=i.price*i.qty;
-c.innerHTML+=`
-<div class="cart-item">
-<img src="${i.image}">
-<div>${i.name}<br>R${i.price} × ${i.qty}</div>
-<div class="qty">
-<button onclick="change(${idx},-1)">−</button>
-<button onclick="change(${idx},1)">+</button>
-</div>
-</div>`;
-});
-document.getElementById("total").innerText=t;
-}
-render();
+function renderCart() {
+  const container = document.getElementById('cart-items');
+  const totalEl = document.getElementById('total');
+  container.innerHTML = '';
+  let total = 0;
 
-function change(i,a){
-cart[i].qty+=a;
-if(cart[i].qty<=0)cart.splice(i,1);
-localStorage.setItem('cart',JSON.stringify(cart));
-render();
+  if (cart.length === 0) {
+    container.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+    totalEl.innerText = '0';
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    total += item.price * item.qty;
+
+    container.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.image}">
+        <div class="cart-name">${item.name}</div>
+        <div class="cart-price">R${item.price}</div>
+
+        <div class="qty-controls">
+          <button onclick="changeQty(${index}, -1)">−</button>
+          <span class="qty-number">${item.qty}</span>
+          <button onclick="changeQty(${index}, 1)">+</button>
+        </div>
+
+        <button class="remove-btn" onclick="removeItem(${index})">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  totalEl.innerText = total;
 }
 
-function checkoutWhatsApp(){
-let msg="Hello Nasy Luxe Hair,%0A%0AI would like to order:%0A";
-let total=0;
-cart.forEach(i=>{
-msg+=`- ${i.name} × ${i.qty} (R${i.price})%0A`;
-total+=i.price*i.qty;
-});
-msg+=`%0ATotal: R${total}`;
-window.open("https://wa.me/27671912088?text="+msg);
+function changeQty(index, amount) {
+  cart[index].qty += amount;
+  if (cart[index].qty <= 0) cart.splice(index, 1);
+  save();
 }
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  save();
+}
+
+function save() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+renderCart();
 </script>
 
 </body>
