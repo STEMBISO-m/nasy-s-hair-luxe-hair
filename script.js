@@ -8,7 +8,7 @@ function addToCart(name, price) {
     cart.push({ name, price, qty: 1 });
   }
   localStorage.setItem("cart", JSON.stringify(cart));
-  alert("Added to cart");
+  alert("Item added to cart");
 }
 
 function showCart() {
@@ -21,11 +21,11 @@ function showCart() {
     cartDiv.innerHTML += `
       <div class="item">
         <strong>${item.name}</strong><br>
-        $${item.price} × ${item.qty}
-        <br>
+        $${item.price} × ${item.qty}<br>
         <button onclick="increase(${index})">+</button>
         <button onclick="removeItem(${index})">Remove</button>
-      </div>`;
+      </div>
+    `;
   });
 
   document.getElementById("total").innerText = total;
