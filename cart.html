@@ -1,29 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Your Cart | Nasy Luxe Hair</title>
   <script src="script.js"></script>
 
   <style>
-    body { font-family:Segoe UI; background:#f8f8f8; padding:30px; }
-    .item {
-      background:white;
-      padding:15px;
-      margin-bottom:15px;
-      border-radius:10px;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
     }
-    button { margin:5px; }
-  </style>
-</head>
-<body onload="showCart()">
 
-<h2>Your Cart</h2>
+    nav {
+      background: black;
+      padding: 15px;
+      text-align: center;
+    }
 
-<div id="cart"></div>
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-<h3>Total: $<span id="total">0</span></h3>
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+    }
 
-<a href="collection.html">← Back to Collection</a>
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
 
-</body>
-</html>
+    .cart-item {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .cart-details {
+      flex: 1;
+    }
+
+    .cart-details strong {
+      font-size: 16px;
+    }
+
+    .cart-details p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .cart-actions {
+      text-align: right;
+    }
+
+    .cart-actions button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .cart-actions button.remove {
+      ba
