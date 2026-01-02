@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nasy Luxe Hair</title>
+
+  <!-- Social Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #000, #555);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 18px;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .social-icons {
+      margin-top: 25px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 22px;
+      margin: 0 12px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #d4af37;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .product-content {
+      padding: 20px;
+    }
+
+    .product h3 {
+      margin-top: 0;
+    }
+
+    .product p {
+      font-size: 14px;
+      margin: 6px 0;
+    }
+
+    button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    button:hover {
+      background: #444;
+    }
+
+    .cart {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      margin-top: 50px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #eee;
+      margin-top: 50px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Nasy Luxe Hair</h1>
+  <p>
+    Premium luxury hair in different textures, inches, and quality.
+    Perfect for installs, wigs, and flawless beauty.
+  </p>
+
+  <!-- SOCIAL MEDIA LINKS -->
+  <div class="social-icons">
+    <a href="https://wa.me/1234567890" target="_blank" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.tiktok.com/@yourtiktok" target="_blank" title="TikTok">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://www.instagram.com/yourinstagram" target="_blank" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/yourfacebook" target="_blank" title="Facebook">
+      <i class="fab fa-facebook"></i>
+    </a>
+  </div>
+</header>
+
+<section>
+  <h2>Our Hair Collection</h2>
+
+  <div class="products">
+
+    <div class="product">
+      <img src="images/curly-hair.jpg" alt="Curly Hair">
+      <div class="product-content">
+        <h3>Curly Hair</h3>
+        <p>Inches: 12” – 30”</p>
+        <p>Quality: Single Drawn</p>
+        <button onclick="addToCart('Curly Hair - Single Drawn')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="images/vietnam-hair.jpg" alt="Vietnamese Hair">
+      <div class="product-content">
+        <h3>Vietnamese Hair</h3>
+        <p>Inches: 14” – 40”</p>
+        <p>Quality: Double Drawn</p>
+        <button onclick="addToCart('Vietnamese Hair - Double Drawn')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="images/dd-hair.jpg" alt="DD Hair">
+      <div class="product-content">
+        <h3>DD Hair</h3>
+        <p>Inches: 16” – 34”</p>
+        <p>Quality: Premium DD</p>
+        <button onclick="addToCart('DD Hair')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="images/single-drawn.jpg" alt="Single Drawn Hair">
+      <div class="product-content">
+        <h3>Single Drawn Hair</h3>
+        <p>Inches: 10” – 28”</p>
+        <p>Quality: Natural & Full</p>
+        <button onclick="addToCart('Single Drawn Hair')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="images/jerry-curls.jpg" alt="DD Jerry Curls">
+      <div class="product-content">
+        <h3>DD Jerry Curls</h3>
+        <p>Inches: 12” – 26”</p>
+        <p>Quality: Soft & Bouncy</p>
+        <button onclick="addToCart('DD Jerry Curls')">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cart">
+    <h2>Your Cart</h2>
+    <ul id="cartItems"></ul>
+  </div>
+</section>
+
+<footer>
+  © 2026 Nasy Luxe Hair | All Rights Reserved
+</footer>
+
+<script>
+  const cartItems = [];
+
+  function addToCart(item) {
+    cartItems.push(item);
+    displayCart();
+  }
+
+  function displayCart() {
+    const cartList = document.getElementById('cartItems');
+    cartList.innerHTML = '';
+    cartItems.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.textContent = (index + 1) + '. ' + item;
+      cartList.appendChild(li);
+    });
+  }
+</script>
+
+</body>
+</html>
