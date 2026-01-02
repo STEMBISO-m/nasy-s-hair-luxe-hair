@@ -3,59 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Cart | Nasy Luxe Hair</title>
-<script src="script.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
-body {
-  font-family:Segoe UI; background:#f8f8f8; margin:0; color:#333;
-}
-.container {
-  max-width:900px; margin:50px auto; padding:20px;
-  background:white; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.1);
-}
+body { font-family:Segoe UI; background:#f8f8f8; margin:0; color:#333; }
+.container { max-width:900px; margin:50px auto; padding:20px; background:white; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.1); }
 h2 { text-align:center; margin-bottom:30px; font-weight:bold; color:#222; }
-.cart-item {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:15px 10px; border-bottom:1px solid #eee; gap:20px;
-}
-.cart-item img {
-  width:100px; border-radius:10px; object-fit:cover;
-}
-.cart-details {
-  flex:1;
-}
+.cart-item { display:flex; align-items:center; justify-content:space-between; padding:15px 10px; border-bottom:1px solid #eee; gap:20px; }
+.cart-item img { width:100px; border-radius:10px; object-fit:cover; }
+.cart-details { flex:1; }
 .cart-details strong { display:block; margin-bottom:5px; font-size:16px; }
 .cart-details p { margin:0; color:#555; }
-.cart-actions {
-  display:flex; flex-direction:column; gap:5px; align-items:center;
-}
-.cart-actions button {
-  background:#d4af37; color:white; border:none; padding:5px 10px;
-  border-radius:6px; font-weight:bold; cursor:pointer; transition: all 0.3s;
-}
+.cart-actions { display:flex; flex-direction:column; gap:5px; align-items:center; }
+.cart-actions button { background:#d4af37; color:white; border:none; padding:5px 10px; border-radius:6px; font-weight:bold; cursor:pointer; transition: all 0.3s; }
 .cart-actions button:hover { background:#b9962f; }
 .remove { background:#ff4c4c; }
 .remove:hover { background:#e43e3e; }
-.total {
-  text-align:right; margin-top:20px; font-size:20px; font-weight:bold;
-}
-.empty {
-  text-align:center; font-size:18px; color:#888; margin:50px 0;
-}
-
+.total { text-align:right; margin-top:20px; font-size:20px; font-weight:bold; }
+.empty { text-align:center; font-size:18px; color:#888; margin:50px 0; }
 .floating-nav {
-  position: fixed; bottom: 20px; left: 20px;
-  background: rgba(0,0,0,0.9); padding: 15px 20px; border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2); display: flex; flex-direction: column; gap: 15px; z-index: 999;
+  position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.9); padding: 15px 20px; border-radius: 15px; display: flex; flex-direction: column; gap: 15px; z-index: 999;
 }
-.floating-nav a {
-  color: white; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px;
-  transition: all 0.3s ease;
-}
+.floating-nav a { color: white; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; }
 .floating-nav a:hover { color: #d4af37; transform: translateX(5px); }
 .floating-nav i { font-size: 18px; }
-
 </style>
 </head>
 <body>
@@ -73,54 +43,23 @@ h2 { text-align:center; margin-bottom:30px; font-weight:bold; color:#222; }
 </div>
 
 <script>
-// Cart array
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Map product names to images
-function getImage(name) {
-  const images = {
-    "16 SDD": "images/16'' sdd.jpg",
-    "10 Curls": "images/10'' curls.jpg",
-    "10 DD": "images/10'' DD.jpg",
-    "10 DD 2": "images/10'' DD 2.jpg",
-    "14 DD": "images/14'' DD.jpg",
-    "8 Grey": "images/8'' GREY.jpg",
-    "10 Vietnamese": "images/10'' VIETNAMESE.jpg",
-    "14 Vietnam": "images/14'' VIETNAM.jpg",
-    "8 Single Drawn": "images/8'' SINGLE DRAWM.jpg",
-    "10 Vietnam 2": "images/10'' VIETNAM 2.jpg",
-    "18 Vietnam": "images/18'' VIETNAM.jpg",
-    "10 Pro DD Grey": "images/10'' PRO DD GREY.jpg",
-    "14 DD 2": "images/14'' DD 2.jpg",
-    "10 Jerry Curls": "images/10'' JERRY CURLS.jpg",
-    "18 Vietnam 2": "images/18'' VIETNAM 2.jpg",
-    "10 Vietnam 3": "images/10'' VIETNAM 3.jpg",
-    "6 Vietnam": "images/6'' VIETNAM.jpg",
-    "10 Vietnam 4": "images/10'' VIETNAM 4.jpg",
-    "8 Vietnam": "images/8'' VIETNAM.jpg",
-    "22 DD W. Curls": "images/22'' DD W. CURLS.jpg"
-  };
-  return images[name] || "images/placeholder.jpg"; // fallback
-}
-
-// Display cart
 function showCart() {
   const cartDiv = document.getElementById('cart');
   cartDiv.innerHTML = '';
   let total = 0;
-
   if(cart.length === 0){
     cartDiv.innerHTML = `<p class="empty">Your cart is empty</p>`;
     document.getElementById('total').innerText = '0';
     return;
   }
 
-  cart.forEach((item,index) => {
+  cart.forEach((item,index)=>{
     total += item.price * item.qty;
-
     cartDiv.innerHTML += `
       <div class="cart-item">
-        <img src="${getImage(item.name)}" alt="${item.name}">
+        <img src="${item.image}" alt="${item.name}">
         <div class="cart-details">
           <strong>${item.name}</strong>
           <p>R${item.price} × ${item.qty}</p>
@@ -137,46 +76,14 @@ function showCart() {
   document.getElementById('total').innerText = total;
 }
 
-// Increase quantity
-function increase(index){
-  cart[index].qty++;
-  localStorage.setItem('cart',JSON.stringify(cart));
-  showCart();
-}
+function increase(index){ cart[index].qty++; saveShow(); }
+function decrease(index){ cart[index].qty > 1 ? cart[index].qty-- : cart.splice(index,1); saveShow(); }
+function removeItem(index){ cart.splice(index,1); saveShow(); }
+function saveShow(){ localStorage.setItem('cart',JSON.stringify(cart)); showCart(); }
 
-// Decrease quantity
-function decrease(index){
-  if(cart[index].qty > 1){
-    cart[index].qty--;
-  } else {
-    cart.splice(index,1);
-  }
-  localStorage.setItem('cart',JSON.stringify(cart));
-  showCart();
-}
-
-// Remove item
-function removeItem(index){
-  cart.splice(index,1);
-  localStorage.setItem('cart',JSON.stringify(cart));
-  showCart();
-}
-
-// Add to cart function (used in collection page)
-function addToCart(name,price){
-  let found = cart.find(item=>item.name===name);
-  if(found){
-    found.qty++;
-  } else {
-    cart.push({name:name, price:price, qty:1});
-  }
-  localStorage.setItem('cart',JSON.stringify(cart));
-  showCart();
-}
-
-// Initial load
 showCart();
 </script>
 
 </body>
 </html>
+
