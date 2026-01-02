@@ -38,10 +38,11 @@ body{margin:0;font-family:Segoe UI;background:#f6f6f6}
 .product img:hover{transform:scale(1.08)}
 button{
   width:100%;padding:10px;background:#000;
-  color:#fff;border:none;border-radius:8px;margin-top:10px
+  color:#fff;border:none;border-radius:8px;margin-top:10px;
+  cursor:pointer
 }
 
-/* WHATSAPP FLOAT */
+/* WHATSAPP */
 .whatsapp-float{
   position:fixed;bottom:20px;right:20px;
   background:#25d366;color:#fff;
@@ -69,7 +70,10 @@ button{
     <a href="index.html">Home</a>
     <a href="collection.html">Collection</a>
     <a href="reviews.html">Reviews</a>
-    <a href="cart.html"><i class="fa fa-cart-shopping"></i> <span id="nav-cart-count">0</span></a>
+    <a href="cart.html">
+      <i class="fa fa-cart-shopping"></i>
+      <span id="nav-cart-count">0</span>
+    </a>
   </nav>
 </header>
 
@@ -84,44 +88,63 @@ function toggleMenu(){
   document.getElementById("navLinks").classList.toggle("show");
 }
 
-const products=[
-["16'' SDD",2200],["10'' Curls",850],["10'' DD",1100],["10'' DD 2",1100],
-["14'' DD",1600],["8'' Grey",1100],["10'' Vietnamese",2100],
-["14'' Vietnam",2600],["8'' Single Drawn",650],["10'' Vietnam",2100],
-["10'' Vietnam 2",2100],["18'' Vietnam",2800],
-["10'' Pro DD Grey",1100],["14'' DD 2",1400],
-["10'' Jerry Curls",950],["18'' Vietnam 2",2800],
-["10'' Vietnam 3",2100],["6'' Vietnam",1700],
-["10'' Vietnam 4",1800],["8'' Vietnam",1100],
-["22'' DD W. Curls",2200]
+/* ===== PRODUCTS (EXACT IMAGE NAMES) ===== */
+const products = [
+  {name:"16'' SDD",price:2200,img:"images/16'' sdd.jpg"},
+  {name:"10'' Curls",price:850,img:"images/10'' curls.jpg"},
+  {name:"10'' DD",price:1100,img:"images/10'' DD.jpg"},
+  {name:"10'' DD 2",price:1100,img:"images/10'' DD 2.jpg"},
+  {name:"14'' DD",price:1600,img:"images/14'' DD.jpg"},
+  {name:"8'' GREY",price:1100,img:"images/8'' GREY.jpg"},
+  {name:"10'' VIETNAMESE",price:2100,img:"images/10'' VIETNAMESE.jpg"},
+  {name:"14'' VIETNAM",price:2600,img:"images/14'' VIETNAM.jpg"},
+  {name:"8'' SINGLE DRAWM",price:650,img:"images/8'' SINGLE DRAWM.jpg"},
+  {name:"10'' VIETNAM",price:2100,img:"images/10'' VIETNAM.jpg"},
+  {name:"10'' VIETNAM 2",price:2100,img:"images/10'' VIETNAM 2.jpg"},
+  {name:"18'' VIETNAM",price:2800,img:"images/18'' VIETNAM.jpg"},
+  {name:"10'' PRO DD GREY",price:1100,img:"images/10'' PRO DD GREY.jpg"},
+  {name:"14'' DD 2",price:1400,img:"images/14'' DD 2.jpg"},
+  {name:"10'' JERRY CURLS",price:950,img:"images/10'' JERRY CURLS.jpg"},
+  {name:"18'' VIETNAM 2",price:2800,img:"images/18'' VIETNAM 2.jpg"},
+  {name:"10'' VIETNAM 3",price:2100,img:"images/10'' VIETNAM 3.jpg"},
+  {name:"6'' VIETNAM",price:1700,img:"images/6'' VIETNAM.jpg"},
+  {name:"10'' VIETNAM 4",price:1800,img:"images/10'' VIETNAM 4.jpg"},
+  {name:"8'' VIETNAM",price:1100,img:"images/8'' VIETNAM.jpg"},
+  {name:"22'' DD W. CURLS",price:2200,img:"images/22'' DD W. CURLS.jpg"}
 ];
 
-const container=document.getElementById("products");
+const container = document.getElementById("products");
 
 products.forEach(p=>{
-container.innerHTML+=`
-<div class="product">
-<img src="images/${p[0]}.jpg">
-<h3>${p[0]}</h3>
-<p>R${p[1]}</p>
-<button onclick="addToCart('${p[0]}',${p[1]},'images/${p[0]}.jpg')">
-Add to Cart
-</button>
-</div>`;
+  container.innerHTML += `
+    <div class="product">
+      <img src="${p.img}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <p>R${p.price}</p>
+      <button onclick="addToCart('${p.name.replace(/'/g,"\\'")}',${p.price},'${p.img}')">
+        Add to Cart
+      </button>
+    </div>
+  `;
 });
 
-function addToCart(name,price,img){
-let cart=JSON.parse(localStorage.getItem('cart'))||[];
-let f=cart.find(i=>i.name===name);
-f?f.qty++:cart.push({name,price,qty:1,image:img});
-localStorage.setItem('cart',JSON.stringify(cart));
-updateNavCart();
+/* ===== CART ===== */
+function addToCart(name,price,image){
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let item = cart.find(i=>i.name===name && i.image===image);
+  if(item){
+    item.qty++;
+  } else {
+    cart.push({name,price,qty:1,image});
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateNavCart();
 }
 
 function updateNavCart(){
-let cart=JSON.parse(localStorage.getItem('cart'))||[];
-document.getElementById("nav-cart-count").innerText=
-cart.reduce((a,b)=>a+b.qty,0);
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  document.getElementById("nav-cart-count").innerText =
+    cart.reduce((sum,i)=>sum+i.qty,0);
 }
 updateNavCart();
 </script>
