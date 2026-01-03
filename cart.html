@@ -1,132 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cart | Nasy Luxe Hair</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
-body { font-family:Segoe UI; background:#f6f6f6; margin:0; }
-
-/* NAV */
-.top-nav {
-  background:#111;
-  color:white;
-  padding:15px 25px;
-  display:flex;
-  justify-content:space-between;
-}
-
-.nav-links a { color:white; text-decoration:none; margin-left:20px; }
-
-.cart-container {
-  max-width:900px;
-  margin:40px auto;
-  background:white;
-  padding:30px;
-  border-radius:20px;
-}
-
-.cart-item {
-  display:grid;
-  grid-template-columns:100px 1fr 120px 120px 40px;
-  gap:15px;
-  align-items:center;
-  border-bottom:1px solid #eee;
-  padding:15px 0;
-}
-
-.cart-item img {
-  width:90px;
-  border-radius:10px;
-}
-
-button {
-  background:#d4af37;
-  border:none;
-  color:white;
-  padding:5px 10px;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-.total {
-  text-align:right;
-  font-size:22px;
-  margin-top:30px;
-}
+body { font-family:Segoe UI; background:#fffafc; margin:0; }
+.container { max-width:900px; margin:40px auto; background:white; padding:30px; border-radius:20px; }
+.item { display:flex; gap:15px; margin-bottom:15px; }
+.item img { width:80px; border-radius:10px; }
+button { background:#d4af37; border:none; color:white; padding:10px 20px; border-radius:20px; cursor:pointer; }
 </style>
 </head>
 
 <body>
 
-<header class="top-nav">
-  <strong>Nasy Luxe Hair</strong>
-  <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="collection.html">Collection</a>
-  </nav>
-</header>
-
-<div class="cart-container">
-  <h2>Your Cart</h2>
-  <div id="cart-items"></div>
-  <div class="total">Total: R<span id="total">0</span></div>
+<div class="container">
+<h2>Your Cart</h2>
+<div id="cart"></div>
+<h3>Total: R<span id="total">0</span></h3>
+<button onclick="checkout()">Checkout via WhatsApp</button>
 </div>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function renderCart(){
-  const div = document.getElementById("cart-items");
-  const totalEl = document.getElementById("total");
-  div.innerHTML = "";
+function render(){
+  let div = document.getElementById("cart");
   let total = 0;
-
-  if(cart.length === 0){
-    div.innerHTML = "<p>Your cart is empty</p>";
-    return;
-  }
-
-  cart.forEach((item, i)=>{
-    total += item.price * item.qty;
+  div.innerHTML="";
+  cart.forEach(i=>{
+    total += i.price*i.qty;
     div.innerHTML += `
-      <div class="cart-item">
-        <img src="${item.image}">
-        <div>${item.name}</div>
-        <div>R${item.price}</div>
-        <div>
-          <button onclick="changeQty(${i},-1)">−</button>
-          ${item.qty}
-          <button onclick="changeQty(${i},1)">+</button>
-        </div>
-        <button onclick="removeItem(${i})"><i class="fa fa-trash"></i></button>
-      </div>
-    `;
+      <div class="item">
+        <img src="${i.image}">
+        <div>${i.name}<br>Qty: ${i.qty}<br>R${i.price}</div>
+      </div>`;
   });
-
-  totalEl.innerText = total;
+  document.getElementById("total").innerText=total;
 }
+render();
 
-function changeQty(i, amount){
-  cart[i].qty += amount;
-  if(cart[i].qty <= 0) cart.splice(i,1);
-  save();
+function checkout(){
+  let msg="Hello Nasy Luxe Hair,%0A%0AMy Order:%0A";
+  cart.forEach(i=>{
+    msg+=`${i.name} x${i.qty} = R${i.price*i.qty}%0A`;
+  });
+  msg+=`%0ATotal: R${document.getElementById("total").innerText}`;
+  window.open("https://wa.me/27671912088?text="+msg);
 }
-
-function removeItem(i){
-  cart.splice(i,1);
-  save();
-}
-
-function save(){
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart();
-}
-
-renderCart();
 </script>
 
 </body>
