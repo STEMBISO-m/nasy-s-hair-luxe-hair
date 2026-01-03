@@ -1,75 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Nasy Luxe Hair</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nasy Luxe Hair</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <style>
-    body { margin:0; font-family:Segoe UI, sans-serif; background:#f8f8f8; color:#333; }
-    
-    header {
-      background:#111;
-      color:white;
-      padding:80px 20px;
-      text-align:center;
-    }
+<style>
+/* ===== GLOBAL ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f8f8f8;
+  color: #333;
+}
 
-    .social-icons { margin-top:25px; }
-    .social-icons a {
-      color:white;
-      font-size:22px;
-      margin:0 12px;
-      text-decoration:none;
-      transition:0.3s;
-    }
-    .social-icons a:hover { color:#d4af37; }
+/* ===== TOP NAV ===== */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #111;
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    section { padding:40px; text-align:center; }
+.nav-logo {
+  font-size: 20px;
+  font-weight: bold;
+}
 
-    /* Floating nav */
-    .floating-nav {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(0,0,0,0.9);
-      padding: 15px 20px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      z-index: 999;
-    }
-    .floating-nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-    .floating-nav a:hover { color: #d4af37; transform: translateX(5px); }
-    .floating-nav i { font-size: 18px; }
-  </style>
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: #d4af37;
+}
+
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: #111;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 22px;
+  margin: 0 12px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .hamburger { display: block; }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: #111;
+    width: 100%;
+    flex-direction: column;
+    display: none;
+  }
+
+  .nav-links a {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+}
+</style>
 </head>
+
 <body>
+
+<header class="top-nav">
+  <div class="nav-logo">Nasy Luxe Hair</div>
+  <div class="hamburger" onclick="toggleNav()">☰</div>
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="collection.html">Collection</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+</header>
 
 <header>
   <h1>Nasy Luxe Hair</h1>
   <p>Luxury hair • Premium quality • Trusted beauty</p>
 
   <div class="social-icons">
-    <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://www.tiktok.com/@yourtiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="https://www.instagram.com/yourinstagram" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/yourfacebook" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://wa.me/27671912088"><i class="fab fa-whatsapp"></i></a>
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
   </div>
 </header>
 
-<section>
+<section style="padding:40px;text-align:center">
   <h2>Welcome</h2>
   <p>
     At Nasy Luxe Hair, we provide premium hair collections in different textures,
@@ -77,14 +128,11 @@
   </p>
 </section>
 
-<!-- Floating Navigation -->
-<div class="floating-nav">
-  <a href="index.html"><i class="fa fa-house"></i> Home</a>
-  <a href="collection.html"><i class="fa fa-box"></i> Collection</a>
-  <a href="reviews.html"><i class="fa fa-star"></i> Reviews</a>
-  <a href="cart.html"><i class="fa fa-cart-shopping"></i> Cart</a>
-</div>
+<script>
+function toggleNav() {
+  document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
 
 </body>
 </html>
-
