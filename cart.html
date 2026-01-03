@@ -17,13 +17,45 @@ body { font-family:Segoe UI; background:#f6f6f6; margin:0; }
   padding:15px 25px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
 }
 
-.nav-links a {
+.nav-links a { color:white; text-decoration:none; margin-left:20px; }
+
+.cart-container {
+  max-width:900px;
+  margin:40px auto;
+  background:white;
+  padding:30px;
+  border-radius:20px;
+}
+
+.cart-item {
+  display:grid;
+  grid-template-columns:100px 1fr 120px 120px 40px;
+  gap:15px;
+  align-items:center;
+  border-bottom:1px solid #eee;
+  padding:15px 0;
+}
+
+.cart-item img {
+  width:90px;
+  border-radius:10px;
+}
+
+button {
+  background:#d4af37;
+  border:none;
   color:white;
-  text-decoration:none;
-  margin-left:20px;
+  padding:5px 10px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.total {
+  text-align:right;
+  font-size:22px;
+  margin-top:30px;
 }
 </style>
 </head>
@@ -35,13 +67,67 @@ body { font-family:Segoe UI; background:#f6f6f6; margin:0; }
   <nav class="nav-links">
     <a href="index.html">Home</a>
     <a href="collection.html">Collection</a>
-    <a href="reviews.html">Reviews</a>
   </nav>
 </header>
 
-<!-- KEEP YOUR EXISTING CART CONTENT BELOW -->
-<!-- (Your cart code stays exactly the same) -->
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <div class="total">Total: R<span id="total">0</span></div>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function renderCart(){
+  const div = document.getElementById("cart-items");
+  const totalEl = document.getElementById("total");
+  div.innerHTML = "";
+  let total = 0;
+
+  if(cart.length === 0){
+    div.innerHTML = "<p>Your cart is empty</p>";
+    return;
+  }
+
+  cart.forEach((item, i)=>{
+    total += item.price * item.qty;
+    div.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.image}">
+        <div>${item.name}</div>
+        <div>R${item.price}</div>
+        <div>
+          <button onclick="changeQty(${i},-1)">−</button>
+          ${item.qty}
+          <button onclick="changeQty(${i},1)">+</button>
+        </div>
+        <button onclick="removeItem(${i})"><i class="fa fa-trash"></i></button>
+      </div>
+    `;
+  });
+
+  totalEl.innerText = total;
+}
+
+function changeQty(i, amount){
+  cart[i].qty += amount;
+  if(cart[i].qty <= 0) cart.splice(i,1);
+  save();
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  save();
+}
+
+function save(){
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+
+renderCart();
+</script>
 
 </body>
 </html>
-
