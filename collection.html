@@ -1,90 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Collection | Nasy Luxe Hair</title>
+<title>Shop | Nasy Luxe Hair</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body { margin:0; font-family:Segoe UI; background:#f8f8f8; }
+body { margin:0; font-family:Segoe UI; background:#fffafc; }
 
-/* ===== NAV ===== */
+/* NAV */
 .top-nav {
-  position: sticky;
-  top: 0;
-  background: #111;
-  color: white;
-  padding: 15px 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background:#111;
+  color:white;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
 }
 
-.nav-links { display:flex; gap:20px; }
-.nav-links a { color:white; text-decoration:none; font-weight:600; }
-
-.hamburger { display:none; font-size:26px; cursor:pointer; }
-
-/* ===== PRODUCTS ===== */
+/* PRODUCTS */
 .products {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
   padding:30px;
 }
 
 .product {
   background:white;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.08);
-  position:relative;
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
 .product img {
   width:100%;
-  border-radius:10px;
-  transition:0.3s;
+  border-radius:12px;
+  transition:.3s;
 }
-.product img:hover { transform:scale(1.08); }
-
-.badge {
-  position:absolute;
-  top:15px;
-  left:15px;
-  background:#d4af37;
-  color:white;
-  padding:5px 10px;
-  font-size:12px;
-  border-radius:5px;
-}
+.product img:hover { transform:scale(1.05); }
 
 button {
-  width:100%;
-  padding:10px;
-  background:black;
+  background:#d4af37;
   color:white;
   border:none;
-  border-radius:6px;
+  padding:10px;
+  width:100%;
+  border-radius:20px;
   margin-top:10px;
   cursor:pointer;
-}
-
-/* ===== MOBILE ===== */
-@media (max-width:768px) {
-  .hamburger { display:block; }
-  .nav-links {
-    position:absolute;
-    top:60px;
-    left:0;
-    width:100%;
-    background:#111;
-    flex-direction:column;
-    display:none;
-  }
-  .nav-links.show { display:flex; }
 }
 </style>
 </head>
@@ -93,18 +58,14 @@ button {
 
 <header class="top-nav">
   <strong>Nasy Luxe Hair</strong>
-  <div class="hamburger" onclick="toggleNav()">☰</div>
-  <nav class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="collection.html">Collection</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="cart.html">Cart</a>
-  </nav>
+  <a href="cart.html" style="color:white;text-decoration:none;">
+    <i class="fa fa-cart-shopping"></i>
+    <span id="count">0</span>
+  </a>
 </header>
 
-<div class="products">
+<div class="products" id="products"></div>
 
-<!-- ALL 22 PRODUCTS -->
 <script>
 const products = [
 ["16'' SDD",2200,"16'' sdd.jpg"],
@@ -130,37 +91,35 @@ const products = [
 ["22'' DD W. Curls",2200,"22'' DD W. CURLS.jpg"]
 ];
 
-document.write(products.map(p=>`
-  <div class="product">
-    <div class="badge">Premium</div>
-    <img src="images/${p[2]}">
-    <h3>${p[0]}</h3>
-    <p>R${p[1]}</p>
-    <button onclick="addToCart('${p[0]}',${p[1]},'images/${p[2]}')">Add to Cart</button>
-  </div>
-`).join(""));
-</script>
+const container = document.getElementById("products");
 
-</div>
-
-<script>
-function toggleNav(){
-  document.getElementById("navLinks").classList.toggle("show");
-}
+products.forEach(p=>{
+  container.innerHTML += `
+    <div class="product">
+      <img src="images/${p[2]}">
+      <h3>${p[0]}</h3>
+      <p>R${p[1]}</p>
+      <button onclick="addToCart('${p[0]}',${p[1]},'images/${p[2]}')">Add to Cart</button>
+    </div>
+  `;
+});
 
 function addToCart(name, price, image){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  let item = cart.find(i => i.name === name);
-  if(item){
-    item.qty++;
-  } else {
-    cart.push({name, price, image, qty:1});
-  }
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert("Added to cart");
+  let item = cart.find(i=>i.name===name);
+  if(item){ item.qty++; }
+  else { cart.push({name,price,image,qty:1}); }
+  localStorage.setItem("cart",JSON.stringify(cart));
+  updateCount();
 }
+
+function updateCount(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  document.getElementById("count").innerText =
+    cart.reduce((a,b)=>a+b.qty,0);
+}
+updateCount();
 </script>
 
 </body>
 </html>
-
