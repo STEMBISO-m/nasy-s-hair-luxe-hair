@@ -1,80 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Reviews | Nasy Luxe Hair</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews | Nasy Luxe Hair</title>
 
-  <style>
-    body { font-family:Segoe UI; background:#f8f8f8; padding:40px; color:#333; }
-    .review {
-      background:white;
-      padding:20px;
-      border-radius:10px;
-      display:flex;
-      gap:15px;
-      margin-bottom:20px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.08);
-    }
-    img { width:50px; height:50px; border-radius:50%; }
-    .back-link { display:block; margin-top:30px; text-decoration:none; color:#555; }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    /* Floating nav */
-    .floating-nav {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(0,0,0,0.9);
-      padding: 15px 20px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      z-index: 999;
-    }
-    .floating-nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-    .floating-nav a:hover { color: #d4af37; transform: translateX(5px); }
-    .floating-nav i { font-size: 18px; }
-  </style>
+<style>
+body { font-family:Segoe UI; background:#f8f8f8; padding:40px; }
+
+/* NAV */
+.top-nav {
+  background:#111;
+  color:white;
+  padding:15px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nav-links a {
+  color:white;
+  text-decoration:none;
+  margin-left:20px;
+}
+</style>
 </head>
+
 <body>
 
+<header class="top-nav">
+  <strong>Nasy Luxe Hair</strong>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="collection.html">Collection</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+</header>
+
 <h2>Customer Reviews</h2>
-
-<div class="review">
-  <img src="images/user1.jpg">
-  <div>
-    <strong>Sarah M.</strong>
-    <p>The hair quality is amazing and very full. I love it!</p>
-  </div>
-</div>
-
-<div class="review">
-  <img src="images/user2.jpg">
-  <div>
-    <strong>Amanda K.</strong>
-    <p>Fast delivery and beautiful hair. Highly recommended.</p>
-  </div>
-</div>
-
-<a href="index.html" class="back-link">← Back Home</a>
-
-<!-- Floating Navigation -->
-<div class="floating-nav">
-  <a href="index.html"><i class="fa fa-house"></i> Home</a>
-  <a href="collection.html"><i class="fa fa-box"></i> Collection</a>
-  <a href="reviews.html"><i class="fa fa-star"></i> Reviews</a>
-  <a href="cart.html"><i class="fa fa-cart-shopping"></i> Cart</a>
-</div>
 
 </body>
 </html>
