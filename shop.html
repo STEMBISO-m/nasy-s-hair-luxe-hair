@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nasy Luxe Hair | Shop</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:linear-gradient(to bottom,#fff0f6,#ffffff);
+  color:#222;
+}
+
+/* HEADER */
+.header {
+  text-align:center;
+  padding:40px 20px;
+}
+
+.header img {
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:15px;
+}
+
+.header h1 {
+  margin:10px 0 5px;
+  font-size:26px;
+}
+
+.header p {
+  font-size:15px;
+  color:#666;
+}
+
+/* SOCIAL */
+.socials a {
+  color:#111;
+  margin:0 10px;
+  font-size:22px;
+}
+
+/* PRODUCTS */
+.products {
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:18px;
+}
+
+.product {
+  background:white;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  padding:12px;
+  text-align:center;
+}
+
+.product img {
+  width:100%;
+  border-radius:14px;
+  transition:0.3s;
+}
+.product img:hover {
+  transform:scale(1.06);
+}
+
+.product h3 {
+  font-size:14px;
+  margin:8px 0 4px;
+}
+
+.product p {
+  font-weight:bold;
+  color:#d4af37;
+  margin-bottom:8px;
+}
+
+.product a {
+  display:block;
+  background:#000;
+  color:white;
+  padding:8px;
+  border-radius:20px;
+  text-decoration:none;
+  font-size:13px;
+  transition:0.3s;
+}
+
+.product a:hover {
+  background:#d4af37;
+}
+
+/* FOOTER */
+.footer {
+  text-align:center;
+  padding:30px 15px;
+  font-size:13px;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <img src="images/profile.jpg" alt="Nasy Luxe Hair">
+  <h1>Nasy Luxe Hair</h1>
+  <p>Luxury Hair • Boss Lady Beauty</p>
+
+  <div class="socials">
+    <a href="https://wa.me/27671912088" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.tiktok.com/@nasythebosslady2" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.instagram.com/nasipi_likuwe" target="_blank"><i class="fab fa-instagram"></i></a>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="products">
+
+<script>
+const products = [
+["16'' SDD",2200,"16'' sdd.jpg"],
+["10'' Curls",850,"10'' curls.jpg"],
+["10'' DD",1100,"10'' DD.jpg"],
+["10'' DD 2",1100,"10'' DD 2.jpg"],
+["14'' DD",1600,"14'' DD.jpg"],
+["8'' Grey",1100,"8'' GREY.jpg"],
+["10'' Vietnamese",2100,"10'' VIETNAMESE.jpg"],
+["14'' Vietnam",2600,"14'' VIETNAM.jpg"],
+["8'' Single Drawn",650,"8'' SINGLE DRAWM.jpg"],
+["10'' Vietnam",2100,"10'' VIETNAM.jpg"],
+["10'' Vietnam 2",2100,"10'' VIETNAM 2.jpg"],
+["18'' Vietnam",2800,"18'' VIETNAM.jpg"],
+["10'' Pro DD Grey",1100,"10'' PRO DD GREY.jpg"],
+["14'' DD 2",1400,"14'' DD 2.jpg"],
+["10'' Jerry Curls",950,"10'' JERRY CURLS.jpg"],
+["18'' Vietnam 2",2800,"18'' VIETNAM 2.jpg"],
+["10'' Vietnam 3",2100,"10'' VIETNAM 3.jpg"],
+["6'' Vietnam",1700,"6'' VIETNAM.jpg"],
+["10'' Vietnam 4",1800,"10'' VIETNAM 4.jpg"],
+["8'' Vietnam",1100,"8'' VIETNAM.jpg"],
+["22'' DD W. Curls",2200,"22'' DD W. CURLS.jpg"]
+];
+
+document.write(products.map(p=>`
+  <div class="product">
+    <img src="images/${p[2]}" alt="${p[0]}">
+    <h3>${p[0]}</h3>
+    <p>R${p[1]}</p>
+    <a href="https://wa.me/27671912088?text=Hello%20Nasy%20Luxe%20Hair,%20I%20want%20to%20order%20${encodeURIComponent(p[0])}%20for%20R${p[1]}" target="_blank">
+      Order on WhatsApp
+    </a>
+  </div>
+`).join(""));
+</script>
+
+</div>
+
+<div class="footer">
+  © Nasy Luxe Hair • Luxury You Can Trust
+</div>
+
+</body>
+</html>
