@@ -3,106 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nasy Luxe Hair | Shop</title>
+<title>Nasy Luxe Hair | Luxury Shop</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body {
+:root{
+  --pink:#f8c1d9;
+  --gold:#d4af37;
+  --dark:#111;
+}
+
+body{
   margin:0;
   font-family:'Segoe UI', sans-serif;
-  background:linear-gradient(to bottom,#fff0f6,#ffffff);
+  background:radial-gradient(circle at top,#fff0f7,#ffffff);
   color:#222;
+  overflow-x:hidden;
 }
 
-/* HEADER */
-.header {
+/* ===== HEADER ===== */
+.header{
   text-align:center;
-  padding:40px 20px;
+  padding:50px 20px 35px;
+  position:relative;
 }
 
-.header img {
-  width:110px;
-  height:110px;
+.header::after{
+  content:"";
+  position:absolute;
+  bottom:-30px;
+  left:50%;
+  transform:translateX(-50%);
+  width:85%;
+  height:60px;
+  background:linear-gradient(to right,transparent,var(--pink),transparent);
+  filter:blur(25px);
+}
+
+.logo{
+  width:120px;
+  height:120px;
   border-radius:50%;
   object-fit:cover;
-  margin-bottom:15px;
+  box-shadow:0 0 30px rgba(212,175,55,.45);
 }
 
-.header h1 {
-  margin:10px 0 5px;
-  font-size:26px;
+.header h1{
+  margin:15px 0 6px;
+  font-size:30px;
+  letter-spacing:1px;
 }
 
-.header p {
+.header p{
   font-size:15px;
   color:#666;
 }
 
-/* SOCIAL */
-.socials a {
-  color:#111;
-  margin:0 10px;
-  font-size:22px;
+/* ===== SOCIAL ===== */
+.socials{
+  margin-top:15px;
 }
 
-/* PRODUCTS */
-.products {
-  max-width:900px;
-  margin:auto;
-  padding:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:18px;
+.socials a{
+  color:var(--dark);
+  font-size:24px;
+  margin:0 12px;
+  transition:.3s;
 }
 
-.product {
-  background:white;
-  border-radius:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-  padding:12px;
-  text-align:center;
+.socials a:hover{
+  color:var(--gold);
+  transform:scale(1.15);
 }
 
-.product img {
-  width:100%;
-  border-radius:14px;
-  transition:0.3s;
-}
-.product img:hover {
-  transform:scale(1.06);
-}
-
-.product h3 {
-  font-size:14px;
-  margin:8px 0 4px;
-}
-
-.product p {
-  font-weight:bold;
-  color:#d4af37;
-  margin-bottom:8px;
-}
-
-.product a {
-  display:block;
-  background:#000;
+/* ===== NOTICE ===== */
+.notice{
+  margin:25px auto;
+  background:linear-gradient(135deg,#000,#222);
   color:white;
-  padding:8px;
+  width:90%;
+  max-width:520px;
+  padding:12px 20px;
+  border-radius:30px;
+  font-size:14px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+/* ===== PRODUCTS ===== */
+.products{
+  max-width:1100px;
+  margin:auto;
+  padding:25px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:22px;
+}
+
+.product{
+  background:white;
+  border-radius:22px;
+  padding:14px;
+  position:relative;
+  box-shadow:0 12px 30px rgba(0,0,0,.1);
+  transition:.35s;
+}
+
+.product:hover{
+  transform:translateY(-8px);
+}
+
+.product img{
+  width:100%;
+  border-radius:18px;
+  transition:.4s;
+}
+
+.product:hover img{
+  transform:scale(1.08);
+}
+
+.badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  background:linear-gradient(135deg,var(--gold),#f7e27a);
+  color:#000;
+  padding:5px 10px;
+  font-size:11px;
   border-radius:20px;
+  font-weight:bold;
+}
+
+.product h3{
+  font-size:14px;
+  margin:10px 0 4px;
+}
+
+.product p{
+  font-weight:bold;
+  color:var(--gold);
+  margin-bottom:10px;
+}
+
+.product a{
+  display:block;
+  background:linear-gradient(135deg,#000,#333);
+  color:white;
+  padding:10px;
+  border-radius:25px;
   text-decoration:none;
   font-size:13px;
-  transition:0.3s;
+  letter-spacing:.3px;
+  transition:.35s;
 }
 
-.product a:hover {
-  background:#d4af37;
+.product a:hover{
+  background:linear-gradient(135deg,var(--gold),#b9962f);
+  color:#000;
 }
 
-/* FOOTER */
-.footer {
+/* ===== FOOTER ===== */
+.footer{
+  margin-top:40px;
+  padding:35px 20px;
   text-align:center;
-  padding:30px 15px;
   font-size:13px;
   color:#777;
 }
@@ -113,9 +179,9 @@ body {
 
 <!-- HEADER -->
 <div class="header">
-  <img src="images/profile.jpg" alt="Nasy Luxe Hair">
+  <img src="images/profile.jpg" class="logo" alt="Nasy Luxe Hair">
   <h1>Nasy Luxe Hair</h1>
-  <p>Luxury Hair • Boss Lady Beauty</p>
+  <p>Luxury Hair • Boss Lady Beauty • Premium Confidence</p>
 
   <div class="socials">
     <a href="https://wa.me/27671912088" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -124,11 +190,14 @@ body {
   </div>
 </div>
 
+<div class="notice">
+  ✨ Tap any hair to order instantly on WhatsApp ✨
+</div>
+
 <!-- PRODUCTS -->
 <div class="products">
-
 <script>
-const products = [
+const products=[
 ["16'' SDD",2200,"16'' sdd.jpg"],
 ["10'' Curls",850,"10'' curls.jpg"],
 ["10'' DD",1100,"10'' DD.jpg"],
@@ -153,21 +222,21 @@ const products = [
 ];
 
 document.write(products.map(p=>`
-  <div class="product">
-    <img src="images/${p[2]}" alt="${p[0]}">
-    <h3>${p[0]}</h3>
-    <p>R${p[1]}</p>
-    <a href="https://wa.me/27671912088?text=Hello%20Nasy%20Luxe%20Hair,%20I%20want%20to%20order%20${encodeURIComponent(p[0])}%20for%20R${p[1]}" target="_blank">
-      Order on WhatsApp
-    </a>
-  </div>
+<div class="product">
+  <span class="badge">LUXE</span>
+  <img src="images/${p[2]}" alt="${p[0]}">
+  <h3>${p[0]}</h3>
+  <p>R${p[1]}</p>
+  <a href="https://wa.me/27671912088?text=Hello%20Nasy%20Luxe%20Hair,%20I%20want%20to%20order%20${encodeURIComponent(p[0])}%20for%20R${p[1]}" target="_blank">
+    Order on WhatsApp
+  </a>
+</div>
 `).join(""));
 </script>
-
 </div>
 
 <div class="footer">
-  © Nasy Luxe Hair • Luxury You Can Trust
+  © Nasy Luxe Hair • Beauty. Confidence. Power.
 </div>
 
 </body>
